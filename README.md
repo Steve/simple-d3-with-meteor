@@ -6,7 +6,7 @@ simplest d3 + meteor example I could make v2
 Learning meteor & d3 together – I wanted a simple example to build on. Since I didn’t find one, I’m sharing this.  The minimal (for me) was that it took advantage of the reactive data synced between client & server to affect something I drew with d3.
 
 * Add & remove records in "Things" collection using the "+" and "-" buttons
-* Circles will rendered for each record in the "Things" collection, with the "name" attribute as the text inside of the circle.
+* Each record in the "Things" collection will be shown as a circle, with the "name" attribute as the text inside of the circle.
 
 ![Screen Shot](https://raw.github.com/steve/simple-d3-with-meteor/master/screenshots/v2.png)
 
