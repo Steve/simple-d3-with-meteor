@@ -4,6 +4,8 @@
 
 <body>
 <a href="https://github.com/steve/simple-d3-with-meteor"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+	{{> things}}
+	{{> vthings}}
 	{{> count}}
 
 Sources
@@ -26,3 +28,29 @@ Sources
 	</div>
 </h1>
 </template>
+
+<template name="things">
+	{{#each things}}
+		{{> thing}}
+		{{data this}}
+	{{/each}}
+</template>
+
+<template name="thing">
+	{{name}}, 
+</template>
+
+<template name="vthings">
+	<div>
+		<svg id="vthings" width="500" height="500">
+			{{#each vthings}}
+				{{> vthing}}
+			{{/each}}
+		</svg>
+	</div>
+</template>
+
+<template name="vthing">
+	{{circle}}
+</template>
+
