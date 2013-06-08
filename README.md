@@ -16,3 +16,11 @@ Learning meteor & d3 together – I wanted a simple example to build on. Since I
 
 * v1 - handled the drawing of all the circles in a single call, only using rendering call for that Meteor template. While d3 was intergrated with Meteor & Meteor triggered the drawing, the association between indiviudal circles (drawn by d3) and individual records (managed by Meteor) wasn't handled by Meteor.
 
+## Sources
+* [http://christopheviau.com/d3_tutorial/](http://christopheviau.com/d3_tutorial/)
+* [http://mbostock.github.io/d3/tutorial/circle.html](http://mbostock.github.io/d3/tutorial/circle.html)
+* [http://d3js.orgfor lots of help, esp. the transitions](http://d3js.org) for lots of help, esp. the transitions
+* [http://blog.benmcmahen.com/post/41124327100/using-d3-and-meteor-to-generate-scalable-vector](http://blog.benmcmahen.com/post/41124327100/using-d3-and-meteor-to-generate-scalable-vector)
+* [http://stackoverflow.com/questions/15464507/understanding-not-permitted-untrusted-code-may-only-update-documents-by-id-m] (http://stackoverflow.com/questions/15464507/understanding-not-permitted-untrusted-code-may-only-update-documents-by-id-m) to help figure out how to remove a single Mongo record from client (since client is "untrusted")
+* [http://stackoverflow.com/questions/13615381/d3-add-text-to-circle](http://stackoverflow.com/questions/13615381/d3-add-text-to-circle) to help figure out how to add text to a SVG circle
+* [https://groups.google.com/forum/?fromgroups#!topic/d3-js/qSwsOYMo9mA](https://groups.google.com/forum/?fromgroups#!topic/d3-js/qSwsOYMo9mA) to help count number of visible "things" to compute layout based just on what the client has visible at the moment (instead of depending on queries to DB)
