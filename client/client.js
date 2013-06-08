@@ -1,3 +1,22 @@
+Template.vthings.vthings = function() {
+	return Things.find({});
+}
+
+Template.vthings.events({
+	'click input.increment' : function() {
+		count = Things.find().count();
+
+		Things.insert({name: "thing " + (count + 1)});
+	},
+	'click input.decrement' : function() {
+		count = Things.find().count();
+		
+		if(count > 0) {
+			Things.remove({_id: Things.findOne({name: "thing " + count})['_id']});
+		}
+	}
+});
+
 Template.vthing.circle = function() {
 	var id = "a" + this._id;
 	var selector_id = "#" + id;
@@ -35,6 +54,19 @@ Template.vthing.circle = function() {
 		g_container.append("text")
 					.attr("dx", function(d) { return -20 })
 					.text(this.name);
+}
+
+Template.vthing._draw_existing = function(existing_circles, x_next, x_increment) {
+	existing_circles
+			.transition()
+			.duration(750)
+			.style("stroke", "gray")
+			.attr("transform", function(d){
+				i = x_next;
+				x_next = x_next + x_increment;
+				console.log("move existing circle to x = " + i);
+				return "translate("+i+",100)"
+			});
 }
 
 d3.selection.prototype.size = function() {
