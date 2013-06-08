@@ -4,29 +4,6 @@ Things = new Meteor.Collection("things");
 
 if (Meteor.isClient) {
 
-  Template.count.number = function () {
-    c =  Count.findOne();
-		// make sure c is defined
-		if(typeof c === 'object'){
-			return c.number;
-		}
-  };
-
-	Template.count.events({
-		'click input.increment' : function() {
-			c = Count.findOne();
-      Count.update(c._id, {$inc: {number: 1}});
-		},
-		'click input.decrement' : function() {
-			c = Count.findOne();
-      Count.update(c._id, {$inc: {number: -1}});
-		}
-	});
-
-	Template.things.things = function() {
-		return Things.find({});
-	}
-
 	Template.vthings.vthings = function() {
 		return Things.find({});
 	}
@@ -38,6 +15,21 @@ if (Meteor.isClient) {
 		return 50;
 	}
 
+	Template.vthings.events({
+		'click input.increment' : function() {
+			count = Things.find().count();
+
+			Things.insert({name: "thing " + (count + 1)});
+		},
+		'click input.decrement' : function() {
+			count = Things.find().count();
+			
+			if(count > 0) {
+				Things.remove({_id: Things.findOne({name: "thing " + count})['_id']});
+			}
+		}
+	});
+
 	Things.find({}).observeChanges({
 		removed: function(id) {
 			console.log("In client, Thing removed " + id );
@@ -47,7 +39,7 @@ if (Meteor.isClient) {
 			var removing_circle = d3.select("#vthings").selectAll(selector_id);
 			removing_circle.remove();
 
-			existing_circles = d3.select("#vthings").selectAll("circle");
+			existing_circles = d3.select("#vthings").selectAll("g");
 			console.log("new # of things = " + existing_circles.size());
 
 			x_increment = (500 - 50) / (existing_circles.size() + 1);
@@ -62,11 +54,11 @@ if (Meteor.isClient) {
 				.transition()
 				.duration(750)
 				.style("stroke", "gray")
-				.attr("cx", function(d) {
+				.attr("transform", function(d){
 					i = x_next;
 					x_next = x_next + x_increment;
 					console.log("move existing circle to x = " + i);
-					return(i);
+					return "translate("+i+",100)"
 				});
 	}
 
