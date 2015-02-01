@@ -5,5 +5,5 @@
 
 autopublish
 insecure
-preserve-inputs
 d3
+meteor-platform
