@@ -1,6 +1,8 @@
-Template.vthings.vthings = function() {
+Template.vthings.helpers({
+  vthings:function() {
 	return Things.find({});
-}
+  },
+});
 
 Template.vthings.events({
 	'click input.increment' : function() {
@@ -17,7 +19,8 @@ Template.vthings.events({
 	}
 });
 
-Template.vthing.circle = function() {
+Template.vthing.helpers({
+    circle:function() {
 	var id = "a" + this._id;
 	var selector_id = "#" + id;
 
@@ -55,6 +58,7 @@ Template.vthing.circle = function() {
 					.attr("dx", function(d) { return -20 })
 					.text(this.name);
 }
+});
 
 Template.vthing._draw_existing = function(existing_circles, x_next, x_increment) {
 	existing_circles
